@@ -1,91 +1,114 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>One Goal a Day</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#070b10">
+  <title>One Goal a Day — Realistic Prototype</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="app">
-    <header class="topbar">
-      <div>
-        <div class="eyebrow">DAILY CHALLENGE</div>
-        <h1>One Goal a Day</h1>
-      </div>
-      <div class="day">DAY <span id="dayNumber">1</span></div>
-    </header>
+<div class="app">
+  <header class="hud">
+    <div class="daybox"><small>DAILY CHALLENGE</small><b>DAY <span id="day">47</span></b></div>
+    <div class="challenge-meta">
+      <strong>FREE KICK</strong>
+      <span>28.4 m · 12 km/h ↗ · 4 PLAYERS</span>
+    </div>
+    <button class="icon-btn" id="soundBtn" aria-label="Sound">🔊</button>
+  </header>
 
-    <section class="stats">
-      <div><span>BEST</span><strong id="bestScore">0</strong></div>
-      <div><span>STREAK</span><strong>🔥 <span id="streak">1</span></strong></div>
-      <div><span>TODAY</span><strong id="todayRank">—</strong></div>
-    </section>
-
-    <section class="game-card">
-      <div class="challenge">
-        <div>
-          <span class="label">TODAY'S GOAL</span>
-          <h2 id="challengeTitle">Freistoß</h2>
-          <p id="challengeInfo">28 m · Mauer · leichter Wind</p>
-        </div>
-        <div class="wind" id="wind">↗ 12 km/h</div>
+  <main>
+    <section class="stadium" id="stadium">
+      <div class="stands">
+        <div class="lights"></div>
+        <div class="crowd"></div>
+        <div class="banner banner-a">ONE GOAL A DAY</div>
+        <div class="banner banner-b">ONE GOAL A DAY</div>
       </div>
 
-      <div class="pitch" id="pitch">
+      <div class="field">
         <div class="goal">
-          <div class="net"></div>
-          <div class="keeper" id="keeper">🧤</div>
+          <div class="goal-net"></div>
+          <div class="keeper" id="keeper"></div>
         </div>
+
         <div class="wall">
-          <span>🧍</span><span>🧍</span><span>🧍</span><span>🧍</span>
+          <div class="player p1">11</div><div class="player p2">7</div>
+          <div class="player p3">5</div><div class="player p4">9</div>
         </div>
 
-        <div class="ball" id="ball" aria-label="Fußball">⚽</div>
-        <div class="aim-line" id="aimLine"></div>
+        <div class="ball-shadow"></div>
+        <div class="ball" id="ball">⚽</div>
+        <div class="aim" id="aim"></div>
+        <div class="touch-hint" id="hint">SWIPE TO SHOOT</div>
+      </div>
+    </section>
 
-        <div class="instruction" id="instruction">
-          Ziehe den Ball nach hinten und lasse los.
+    <section class="dashboard">
+      <div class="dash-card">
+        <span>YOUR SHOT</span>
+        <b class="big" id="score">—</b>
+        <small>BEST SCORE</small>
+        <strong id="best">0</strong>
+        <small>RANK</small>
+        <strong id="rank">—</strong>
+      </div>
+
+      <div class="dash-card target-card">
+        <span>TODAY'S GOAL</span>
+        <div class="mini-pitch">
+          <div class="mini-goal"></div>
+          <i></i><i></i><i></i><i></i>
+          <em>⚽</em>
         </div>
+        <small>SHOTS TAKEN</small>
+        <strong>1 / 1</strong>
       </div>
 
-      <div class="controls">
-        <button id="shootBtn" class="primary">SCHUSS</button>
-        <button id="resetBtn" class="secondary hidden">NOCHMAL</button>
-      </div>
-    </section>
-
-    <section class="result hidden" id="result">
-      <div class="result-label">DEIN ERGEBNIS</div>
-      <div class="score" id="score">0</div>
-      <div class="result-message" id="resultMessage">Guter Versuch!</div>
-
-      <div class="result-grid">
-        <div><span>GENAUIGKEIT</span><strong id="accuracy">0%</strong></div>
-        <div><span>GESCHWINDIGKEIT</span><strong id="speed">0 km/h</strong></div>
-        <div><span>RANG</span><strong id="rank">#—</strong></div>
-      </div>
-
-      <button id="shareBtn" class="share">⚡ SCORE TEILEN</button>
-    </section>
-
-    <section class="leaderboard">
-      <div class="section-title">
-        <h3>Freunde</h3>
-        <span>HEUTE</span>
-      </div>
-      <div class="players">
-        <div class="player"><b>1</b><span>Max</span><strong>934</strong></div>
-        <div class="player"><b>2</b><span>Anna</span><strong>901</strong></div>
-        <div class="player"><b>3</b><span>Lukas</span><strong>887</strong></div>
-        <div class="player you"><b id="youPlace">4</b><span>Du</span><strong id="youScore">—</strong></div>
+      <div class="dash-card">
+        <span>SCORE BREAKDOWN</span>
+        <div class="line"><small>BASE SCORE</small><b id="base">500</b></div>
+        <div class="line"><small>ACCURACY</small><b id="acc">—</b></div>
+        <div class="line"><small>POWER</small><b id="power">—</b></div>
+        <div class="line"><small>DIFFICULTY</small><b>x1.30</b></div>
+        <div class="total"><small>TOTAL</small><b id="total">—</b></div>
       </div>
     </section>
 
-    <footer>Ein Versuch. Jeden Tag. 🌍</footer>
+    <section class="actions">
+      <button id="share">↗ SHARE SCORE</button>
+      <button id="tomorrow" class="primary">PLAY TOMORROW</button>
+      <button id="leaderboardBtn">▥ LEADERBOARD</button>
+    </section>
+
+    <section class="lower">
+      <div class="leaderboard">
+        <nav><button class="active">WORLD</button><button>COUNTRY</button><button>FRIENDS</button></nav>
+        <div class="row"><i>1</i><span class="avatar a1"></span><b>Max</b><strong>934</strong></div>
+        <div class="row"><i>2</i><span class="avatar a2"></span><b>Anna</b><strong>901</strong></div>
+        <div class="row you"><i>3</i><span class="avatar youa"></span><b>You</b><strong id="youScore">873</strong></div>
+        <div class="row"><i>4</i><span class="avatar a4"></span><b>Lukas</b><strong>821</strong></div>
+      </div>
+      <div class="streak">
+        <span>KEEP YOUR STREAK!</span>
+        <div class="fireball">⚽</div>
+        <b>12 DAYS</b>
+        <small>CURRENT STREAK</small>
+      </div>
+    </section>
   </main>
 
-  <div class="toast" id="toast"></div>
-  <script src="app.js"></script>
+  <div class="result-modal" id="modal">
+    <div class="modal-box">
+      <small>YOUR SHOT</small>
+      <h2 id="modalTitle">GOAL!</h2>
+      <div class="modal-score" id="modalScore">873</div>
+      <p id="modalText">Top corner. What a finish.</p>
+      <button id="closeModal" class="primary">VIEW RESULT</button>
+    </div>
+  </div>
+</div>
+<script src="app.js"></script>
 </body>
 </html>
