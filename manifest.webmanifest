@@ -1,0 +1,9 @@
+{
+  "name": "One Goal a Day",
+  "short_name": "One Goal a Day",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#05080d",
+  "theme_color": "#05080d",
+  "icons": []
+}
