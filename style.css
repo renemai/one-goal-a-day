@@ -1,0 +1,363 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #f5f7fb;
+  background: #0b0d11;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 50% 0%, #19301f 0, transparent 34%),
+    #0b0d11;
+}
+
+button {
+  font: inherit;
+}
+
+.app {
+  width: min(720px, 100%);
+  margin: 0 auto;
+  padding: 22px 16px 34px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.eyebrow, .label, .result-label, .stats span, .result-grid span {
+  color: #8f9aa8;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+h1 {
+  margin: 3px 0 0;
+  font-size: clamp(26px, 7vw, 40px);
+  line-height: 1;
+}
+
+.day {
+  padding: 9px 11px;
+  border: 1px solid #2a3039;
+  border-radius: 12px;
+  color: #cbd2dc;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 20px 0 14px;
+}
+
+.stats > div {
+  background: #12161c;
+  border: 1px solid #202630;
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.stats strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 19px;
+}
+
+.game-card, .result, .leaderboard {
+  background: #11151a;
+  border: 1px solid #242a33;
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.challenge {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 17px;
+}
+
+.challenge h2 {
+  margin: 4px 0 3px;
+  font-size: 22px;
+}
+
+.challenge p {
+  margin: 0;
+  color: #aab3bf;
+  font-size: 13px;
+}
+
+.wind {
+  white-space: nowrap;
+  padding: 9px 10px;
+  border-radius: 10px;
+  background: #1a2028;
+  color: #b8c1cc;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.pitch {
+  position: relative;
+  height: min(570px, 105vw);
+  min-height: 430px;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px) 0 0 / 50px 50px,
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px) 0 0 / 50px 50px,
+    #1c6b3a;
+  border-top: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.pitch::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -100px;
+  width: 380px;
+  height: 380px;
+  transform: translateX(-50%);
+  border: 2px solid rgba(255,255,255,.35);
+  border-radius: 50%;
+}
+
+.goal {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  width: 82%;
+  max-width: 520px;
+  height: 150px;
+  transform: translateX(-50%);
+  border: 5px solid #f1f4f7;
+  border-bottom-width: 8px;
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,.12) 0 5px, transparent 5px 10px);
+}
+
+.net {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 24%, rgba(255,255,255,.18) 25%, transparent 26%),
+    linear-gradient(0deg, transparent 24%, rgba(255,255,255,.18) 25%, transparent 26%);
+  background-size: 28px 28px;
+}
+
+.keeper {
+  position: absolute;
+  left: 50%;
+  bottom: -20px;
+  transform: translateX(-50%);
+  font-size: 46px;
+  transition: left .35s ease, transform .35s ease;
+  z-index: 5;
+}
+
+.wall {
+  position: absolute;
+  top: 194px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 3px;
+  z-index: 4;
+  font-size: 38px;
+  filter: drop-shadow(0 5px 3px rgba(0,0,0,.25));
+}
+
+.ball {
+  position: absolute;
+  left: 50%;
+  bottom: 70px;
+  transform: translateX(-50%);
+  font-size: 46px;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  z-index: 8;
+}
+
+.ball.dragging {
+  cursor: grabbing;
+}
+
+.aim-line {
+  position: absolute;
+  display: none;
+  height: 3px;
+  transform-origin: left center;
+  background: rgba(255,255,255,.65);
+  z-index: 6;
+  border-radius: 99px;
+}
+
+.instruction {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 90%;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: rgba(0,0,0,.32);
+  color: rgba(255,255,255,.88);
+  font-size: 12px;
+  text-align: center;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  padding: 14px;
+}
+
+button {
+  border: 0;
+  border-radius: 13px;
+  padding: 14px 16px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.primary, .share {
+  flex: 1;
+  background: #f4f6f8;
+  color: #0b0d11;
+}
+
+.secondary {
+  flex: 1;
+  background: #242b34;
+  color: #fff;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.result {
+  margin-top: 14px;
+  padding: 22px 17px 17px;
+  text-align: center;
+}
+
+.score {
+  margin: 5px 0 0;
+  font-size: clamp(58px, 17vw, 100px);
+  line-height: .95;
+  font-weight: 950;
+  letter-spacing: -.06em;
+}
+
+.result-message {
+  margin: 8px 0 20px;
+  color: #aeb7c2;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.result-grid > div {
+  padding: 11px 5px;
+  border-radius: 12px;
+  background: #181d24;
+}
+
+.result-grid strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 15px;
+}
+
+.leaderboard {
+  margin-top: 14px;
+  padding: 17px;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-title h3 {
+  margin: 0;
+}
+
+.section-title span {
+  color: #8f9aa8;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.players {
+  margin-top: 10px;
+}
+
+.player {
+  display: grid;
+  grid-template-columns: 30px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 0;
+  border-top: 1px solid #222831;
+}
+
+.player b {
+  color: #7f8996;
+}
+
+.player strong {
+  font-variant-numeric: tabular-nums;
+}
+
+.player.you {
+  color: #fff;
+}
+
+footer {
+  text-align: center;
+  margin-top: 20px;
+  color: #68727e;
+  font-size: 12px;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translate(-50%, 20px);
+  padding: 11px 15px;
+  border-radius: 12px;
+  background: #f4f6f8;
+  color: #0b0d11;
+  font-weight: 800;
+  opacity: 0;
+  pointer-events: none;
+  transition: .25s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
