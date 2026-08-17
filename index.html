@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>One Goal a Day</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">DAILY CHALLENGE</div>
+        <h1>One Goal a Day</h1>
+      </div>
+      <div class="day">DAY <span id="dayNumber">1</span></div>
+    </header>
+
+    <section class="stats">
+      <div><span>BEST</span><strong id="bestScore">0</strong></div>
+      <div><span>STREAK</span><strong>🔥 <span id="streak">1</span></strong></div>
+      <div><span>TODAY</span><strong id="todayRank">—</strong></div>
+    </section>
+
+    <section class="game-card">
+      <div class="challenge">
+        <div>
+          <span class="label">TODAY'S GOAL</span>
+          <h2 id="challengeTitle">Freistoß</h2>
+          <p id="challengeInfo">28 m · Mauer · leichter Wind</p>
+        </div>
+        <div class="wind" id="wind">↗ 12 km/h</div>
+      </div>
+
+      <div class="pitch" id="pitch">
+        <div class="goal">
+          <div class="net"></div>
+          <div class="keeper" id="keeper">🧤</div>
+        </div>
+        <div class="wall">
+          <span>🧍</span><span>🧍</span><span>🧍</span><span>🧍</span>
+        </div>
+
+        <div class="ball" id="ball" aria-label="Fußball">⚽</div>
+        <div class="aim-line" id="aimLine"></div>
+
+        <div class="instruction" id="instruction">
+          Ziehe den Ball nach hinten und lasse los.
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="shootBtn" class="primary">SCHUSS</button>
+        <button id="resetBtn" class="secondary hidden">NOCHMAL</button>
+      </div>
+    </section>
+
+    <section class="result hidden" id="result">
+      <div class="result-label">DEIN ERGEBNIS</div>
+      <div class="score" id="score">0</div>
+      <div class="result-message" id="resultMessage">Guter Versuch!</div>
+
+      <div class="result-grid">
+        <div><span>GENAUIGKEIT</span><strong id="accuracy">0%</strong></div>
+        <div><span>GESCHWINDIGKEIT</span><strong id="speed">0 km/h</strong></div>
+        <div><span>RANG</span><strong id="rank">#—</strong></div>
+      </div>
+
+      <button id="shareBtn" class="share">⚡ SCORE TEILEN</button>
+    </section>
+
+    <section class="leaderboard">
+      <div class="section-title">
+        <h3>Freunde</h3>
+        <span>HEUTE</span>
+      </div>
+      <div class="players">
+        <div class="player"><b>1</b><span>Max</span><strong>934</strong></div>
+        <div class="player"><b>2</b><span>Anna</span><strong>901</strong></div>
+        <div class="player"><b>3</b><span>Lukas</span><strong>887</strong></div>
+        <div class="player you"><b id="youPlace">4</b><span>Du</span><strong id="youScore">—</strong></div>
+      </div>
+    </section>
+
+    <footer>Ein Versuch. Jeden Tag. 🌍</footer>
+  </main>
+
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
